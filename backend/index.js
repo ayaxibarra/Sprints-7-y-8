@@ -1,3 +1,6 @@
+const dns = require('node:dns');
+dns.setServers(['1.1.1.1', '8.8.8.8']);
+
 require('dotenv').config();
 
 const express = require('express');
@@ -7,6 +10,8 @@ const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/auth.routes');
 const adminRoutes = require('./routes/admin.routes');
+const productRoutes = require('./routes/productoRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 const notFound = require('./middlewares/notFound');
 const errorHandler = require('./middlewares/errorHandler');
@@ -34,6 +39,8 @@ app.get('/', (req, res) => {
 // Rutas de la API
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/productos', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Manejo de rutas inexistentes
 app.use(notFound);
