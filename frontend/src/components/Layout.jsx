@@ -11,13 +11,13 @@ export default function Layout() {
   }, [location.pathname])
 
   return (
-    <>
+    <div className="app-container">
       <a href="#contenido" className="skip-link">Saltar al contenido</a>
       <Navbar />
       <main id="contenido" tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   )
 }

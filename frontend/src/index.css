@@ -714,6 +714,11 @@ html {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+.footer-links a {
+    color: var(--white);
+    transition: color 0.25s ease;
+}
+
 .footer-links a:hover {
     color: var(--accent-color);
 }

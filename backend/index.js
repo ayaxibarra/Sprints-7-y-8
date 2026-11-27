@@ -15,12 +15,14 @@ const orderRoutes = require('./routes/orderRoutes');
 
 const notFound = require('./middlewares/notFound');
 const errorHandler = require('./middlewares/errorHandler');
+const requestLogger = require('./middlewares/requestLogger');
 
 const helmet = require('helmet');
 
 const app = express();
 
 // Middlewares globales
+app.use(requestLogger);
 app.use(helmet());
 
 app.use(cors({

@@ -13,6 +13,7 @@ import RegisterPage from './pages/RegisterPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
 import MyOrdersPage from './pages/MyOrdersPage.jsx'
 import AdminPage from './pages/AdminPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 import './App.css'
 
 export default function App() {
@@ -67,6 +68,7 @@ export default function App() {
                   </ProtectedRoute>
                 )}
               />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

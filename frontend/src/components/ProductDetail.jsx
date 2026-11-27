@@ -4,6 +4,7 @@ import { getProductById } from "../services/productService";
 import { useCart } from "../context/CartContext.jsx";
 
 function formatPrice(price) {
+  if (price === undefined || price === null || isNaN(Number(price))) return '$0';
   return `$${Number(price).toLocaleString("es-AR")}`;
 }
 
@@ -119,17 +120,32 @@ export default function ProductDetail() {
           </ul>
         )}
 
-        <div className="contenedor-precio">
+        <div className="contenedor-precio" style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <span className="precio-producto">{formatPrice(product.price)}</span>
+          <span
+            className={`stock-badge ${product.stock > 0 ? 'stock-ok' : 'stock-cero'}`}
+            style={{
+              fontSize: '0.875rem',
+              padding: '0.3rem 0.65rem',
+              borderRadius: '4px',
+              backgroundColor: product.stock > 0 ? '#e8f5e9' : '#ffebee',
+              color: product.stock > 0 ? '#2e7d32' : '#c62828',
+              fontWeight: 600,
+            }}
+          >
+            {product.stock > 0 ? `Stock: ${product.stock} disponibles` : 'Sin stock disponible'}
+          </span>
         </div>
 
         {onAgregarAlCarrito && (
           <button
             type="button"
             className="btn-agregar-carrito"
+            disabled={!product.stock || product.stock <= 0}
+            style={(!product.stock || product.stock <= 0) ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
             onClick={() => onAgregarAlCarrito(product)}
           >
-            Añadir al Carrito
+            {product.stock > 0 ? 'Añadir al Carrito' : 'Agotado'}
           </button>
         )}
       </section>

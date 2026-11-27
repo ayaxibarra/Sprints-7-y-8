@@ -5,7 +5,6 @@ const getProductos = async (req, res, next) => {
     const productos = await Product.find();
     res.status(200).json(productos);
   } catch (error) {
-    error.status = 400;
     next(error);
   }
 };
@@ -16,13 +15,16 @@ const getProductoById = async (req, res, next) => {
 
     if (!producto) {
       const error = new Error("Producto no encontrado");
-      error.status = 404;
+      error.statusCode = 404;
       return next(error);
     }
 
     res.status(200).json(producto);
   } catch (error) {
-    error.status = 400;
+    if (error.name === "CastError") {
+      error.statusCode = 400;
+      error.message = "Identificador de producto inválido.";
+    }
     next(error);
   }
 };
@@ -36,7 +38,9 @@ const createProducto = async (req, res, next) => {
       producto: productoGuardado,
     });
   } catch (error) {
-    error.status = 400;
+    if (error.name === "ValidationError") {
+      error.statusCode = 400;
+    }
     next(error);
   }
 };
@@ -51,7 +55,7 @@ const updateProducto = async (req, res, next) => {
 
     if (!productoActualizado) {
       const error = new Error("Producto no encontrado");
-      error.status = 404;
+      error.statusCode = 404;
       return next(error);
     }
 
@@ -60,7 +64,9 @@ const updateProducto = async (req, res, next) => {
       producto: productoActualizado,
     });
   } catch (error) {
-    error.status = 400;
+    if (error.name === "ValidationError" || error.name === "CastError") {
+      error.statusCode = 400;
+    }
     next(error);
   }
 };
@@ -71,7 +77,7 @@ const deleteProducto = async (req, res, next) => {
 
     if (!productoEliminado) {
       const error = new Error("Producto no encontrado");
-      error.status = 404;
+      error.statusCode = 404;
       return next(error);
     }
 
@@ -80,7 +86,10 @@ const deleteProducto = async (req, res, next) => {
       producto: productoEliminado,
     });
   } catch (error) {
-    error.status = 400;
+    if (error.name === "CastError") {
+      error.statusCode = 400;
+      error.message = "Identificador de producto inválido.";
+    }
     next(error);
   }
 };
