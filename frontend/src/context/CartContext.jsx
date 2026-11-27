@@ -1,5 +1,11 @@
 import { createContext, useContext, useMemo, useState } from 'react'
-import { agregarProducto, calcularTotal, contarUnidades, quitarProducto } from '../utils/carrito.js'
+import {
+  actualizarCantidad,
+  agregarProducto,
+  calcularTotal,
+  contarUnidades,
+  quitarProducto,
+} from '../utils/carrito.js'
 
 const CartContext = createContext(null)
 
@@ -14,6 +20,10 @@ export function CartProvider({ children }) {
     setItems((actual) => quitarProducto(actual, id))
   }
 
+  const updateQuantity = (id, nuevaCantidad) => {
+    setItems((actual) => actualizarCantidad(actual, id, nuevaCantidad))
+  }
+
   const clearCart = () => {
     setItems([])
   }
@@ -23,6 +33,7 @@ export function CartProvider({ children }) {
       items,
       addItem,
       removeItem,
+      updateQuantity,
       clearCart,
       cantidad: contarUnidades(items),
       total: calcularTotal(items),

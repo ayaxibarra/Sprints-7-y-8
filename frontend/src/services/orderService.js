@@ -11,3 +11,11 @@ export function getAllOrders(token) {
 export function getAdminTest(token) {
   return apiRequest('/api/admin/test', { token })
 }
+
+export function createOrder(orderData, token) {
+  return apiRequest('/api/orders', {
+    method: 'POST',
+    body: orderData,
+    token,
+  })
+}

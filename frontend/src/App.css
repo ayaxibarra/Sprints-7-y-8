@@ -292,3 +292,52 @@ main { min-height: 65vh; }
 .skip-link:focus { top: 0; }
 @media (min-width: 640px) { .integration-products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 960px) { .integration-products { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Controles de cantidad y Checkout */
+.cart-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cart-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart-qty button {
+  min-width: 2.5rem;
+}
+
+.checkout-box,
+.checkout-confirmation {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid #a0522d;
+  border-radius: 0.4rem;
+  background: #fffaf3;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  max-width: 520px;
+}
+
+.checkout-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  border: 1px solid #a0522d;
+  border-radius: 0.3rem;
+  background: #fff;
+}
