@@ -1,14 +1,21 @@
 /* Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main,
-.integration-header,
-.site-footer {
+.integration-header {
   max-width: 1100px;
   margin: auto;
   padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 main {
-  min-height: 65vh;
+  flex: 1;
 }
 
 .integration-header nav {
@@ -196,11 +203,6 @@ button.btn-secondary {
 }
 
 /* Detalle */
-.contenedor-producto {
-  display: grid;
-  gap: 1.5rem;
-}
-
 .titulo-producto {
   font-family: "Playfair Display", Georgia, serif;
   color: #a0522d;
@@ -251,7 +253,7 @@ button.btn-secondary {
 }
 
 .site-footer a {
-  color: #a0522d;
+  color: var(--white);
 }
 
 /* Mobile-first: ampliar grillas en pantallas mayores */
@@ -273,14 +275,8 @@ button.btn-secondary {
   .integration-products {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
-  .contenedor-producto {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
 }
 .integration-header { max-width: 1100px; margin: auto; padding: 1rem; }
-main { min-height: 65vh; }
 .integration-header nav { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
 .integration-products, .cart-list { list-style: none; padding: 0; display: grid; gap: 1rem; }
 .integration-products article, .cart-item { padding: 1rem; border: 1px solid #a0522d; border-radius: .4rem; background: #fffaf3; }
