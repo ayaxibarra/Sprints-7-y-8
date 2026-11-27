@@ -17,7 +17,7 @@ export default function Home() {
     getProducts()
       .then((data) => {
         if (!cancelled) {
-          setProductosDestacados(data.slice(0, 4))
+          setProductosDestacados(data.slice(0, 3))
           setCargando(false)
         }
       })

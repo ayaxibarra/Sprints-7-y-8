@@ -150,31 +150,7 @@ button.btn-secondary {
   margin-top: 0.5rem;
 }
 
-/* Catalogo: filtros y estados */
-.filter-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-.sort-box,
-.search-box {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.search-box input,
-.sort-box select {
-  min-height: 44px;
-  padding: 0.5rem 0.75rem;
-  font: inherit;
-  border: 1px solid #a0522d;
-  border-radius: 0.3rem;
-  background: #fffaf3;
-}
+/* Catalogo: filtros y estados — los estilos viven en index.css */
 
 .estado-catalogo {
   display: flex;
@@ -263,11 +239,7 @@ button.btn-secondary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .filter-bar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
+  /* filter-bar responsive → ver index.css */
 }
 
 @media (min-width: 960px) {
