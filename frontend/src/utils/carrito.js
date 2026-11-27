@@ -9,6 +9,16 @@ export function quitarProducto(items, id) {
   return items.filter(item => item.id !== id)
 }
 
+export function actualizarCantidad(items, id, nuevaCantidad) {
+  if (nuevaCantidad <= 0) {
+    return quitarProducto(items, id)
+  }
+
+  return items.map((item) =>
+    item.id === id ? { ...item, cantidad: nuevaCantidad } : item
+  )
+}
+
 export function contarUnidades(items) {
   return items.reduce((total, item) => total + item.cantidad, 0)
 }
